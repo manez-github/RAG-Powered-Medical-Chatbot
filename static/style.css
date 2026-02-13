@@ -1,0 +1,118 @@
+.chat{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.card{
+    height: 500px;
+    border-radius: 15px !important;
+    background-color: papayawhip !important;
+    border: 1.5px solid saddlebrown;
+}
+
+.msg_card_body{
+    overflow-y: auto;    /* Adds scroll bar if the chat exceeds the available space */
+    border-top: 1.5px solid saddlebrown;
+    border-bottom: 1.5px solid saddlebrown;
+}
+
+.send_btn{
+	border-radius: 0 15px 15px 0 !important;
+	cursor: pointer;
+    border: 2px solid black;
+}
+
+.img_cont{
+	position: relative;
+	height: 70px;
+	width: 70px;
+}
+
+.card_header_img{
+    height: 70px;
+    width: 70px;
+    border: 1.5px solid black; 
+}
+
+.msg_img{
+    height: 40px;
+    width: 40px;
+    border: 1.5px solid black;
+}
+
+.online_icon{
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-color: #4cd137;
+    border-radius: 50%;
+    bottom: 0.2rem;
+    right: 0.4rem;
+    border: 1.5px solid white;
+}
+
+.card_header_info{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
+}
+
+.card_header_info span{
+    font-size: 25px;
+}
+
+.card_header_info p{
+    font-size: 15px;
+}
+
+
+/* User: The one who asks questions. */
+.msg_container_user{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    border: 1.5px solid saddlebrown;
+    padding: 10px;
+    position: relative;
+}
+
+.msg_time_user{
+    position: absolute;
+    font-size: 10px;
+    right: 6px; 
+    bottom: -15px;
+}
+
+/* Bot: Our RAG Chatbot who replies. */
+.msg_container_bot{
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 10px;
+	border-radius: 15px;
+	background-color: whitesmoke;
+    border: 1.5px solid saddlebrown;
+	padding: 10px;
+	position: relative;
+}
+
+.msg_time_bot{
+	position: absolute;
+	left: 6px;
+	bottom: -15px;
+	font-size: 10px;
+}
+
+.type_msg{
+    border: 2px solid black;
+    outline: none !important;
+}
+
+
+.form-control.type_msg:focus,
+.form-control.type_msg.focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #000 !important;      
+}

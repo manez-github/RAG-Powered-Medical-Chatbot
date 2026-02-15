@@ -3,7 +3,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copy only dependency files first → enables strong caching
-COPY pyproject.toml uv.lock/
+COPY pyproject.toml uv.lock ./
 
 # Install uv (fastest way: copy binary from official image)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/

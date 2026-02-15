@@ -1,0 +1,65 @@
+name: Deploy Application Docker Image to EC2 instance
+
+on:
+  push: 
+    branches: [main]
+
+# Creating a job namely Continuous-Integration
+jobs:
+  Continuous-Integration:              # Continuous-Integration is the name of the First Job
+    runs-on: ubuntu-latest             # name of the runner: ubuntu-latest (Github runner runs CI)
+
+    steps:
+    - name: Checkout                   # Step 1: Clone the code from my repository into the container
+      uses: actions/checkout@v2
+ 
+      # Step 2: We are giving access keys to aws which we can use to login to different services like ECR, S3 and other AWS services automatically
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with: 
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+      # Step 3: Build the docker image and push it to ECR
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}                    # temporary login token/address for ECR 
+        ECR_REPOSITORY: ${{ secrets.ECR_REPO }}                                  # name of the ECR repository
+        IMAGE_TAG: latest                                                        # saying that this image is the latest
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .               
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      # the run step: 
+      #  1. Builds the docker image. 
+      #  2. Pushes the docker image to ECR 
+      #  3. Gives the address of the ECR as the output
+
+  Continuous-Deployment:                # Continuous-Deployment is the name of the second job
+    needs: Continuous-Integration       # Continuous-Deployment(Second Job) cannot be started unless Continuous-Integration(First Job) is completed.
+    runs-on: self-hosted                # name of the runner: self-hosted (AWS EC2 runner runs CD)
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Run Docker Image to serve users
+        run: |
+          docker run -d -e AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" -e AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" -e AWS_DEFAULT_REGION="${{ secrets.AWS_DEFAULT_REGION }}" -e PINECONE_API_KEY="${{ secrets.PINECONE_API_KEY }}" -e GROQ_API_KEY="${{ secrets.GROQ_API_KEY }}" -p 8080:8080 "${{ steps.login-ecr.outputs.registry }}"/"${{ secrets.ECR_REPO }}":latest

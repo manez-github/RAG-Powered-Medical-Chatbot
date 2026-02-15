@@ -15,4 +15,5 @@ dependencies = [
     "langchain-openai==0.3.24",
     "langchain-community==0.3.26",
     "langchain-groq>=0.3.8",
+    "gunicorn>=25.1.0",
 ]

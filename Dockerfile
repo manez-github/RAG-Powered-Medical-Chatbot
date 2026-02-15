@@ -19,4 +19,4 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # Now copy the actual application code
 COPY . .
 
-CMD ["uv", "run", "gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]
+CMD ["uv", "run", "gunicorn", "-w", "1", "-b", "0.0.0.0:8000", "app:app"]

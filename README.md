@@ -22,6 +22,10 @@ For deployment, an **AWS ECR** repository was created to store Docker images, an
 
 > Ask the chatbot anything medical — symptoms, treatments, drugs, anatomy — and it will retrieve the most relevant passages from its knowledge base and generate a concise, grounded answer.
 
+
+https://github.com/user-attachments/assets/3ff87ee4-c686-4f94-8d42-36cdc2da6324
+
+
 ---
 
 ## 🧠 How It Works
@@ -51,6 +55,10 @@ User Question
 ```
 
 The chatbot **never hallucinates facts it doesn't have** — if the retrieved context doesn't contain the answer, it says so.
+
+<img width="1024" height="881" alt="how-it-works-1" src="https://github.com/user-attachments/assets/6bd68cb0-431d-41c7-a6a9-5acb42e346ac" />
+
+<img width="781" height="311" alt="how-it-works-2" src="https://github.com/user-attachments/assets/bf64c843-431d-40a9-b223-ca58af7a9184" />
 
 ---
 

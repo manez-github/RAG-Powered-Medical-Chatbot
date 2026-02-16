@@ -23,7 +23,7 @@ For deployment, an **AWS ECR** repository was created to store Docker images, an
 > Ask the chatbot anything medical — symptoms, treatments, drugs, anatomy — and it will retrieve the most relevant passages from its knowledge base and generate a concise, grounded answer.
 
 
-https://github.com/user-attachments/assets/3ff87ee4-c686-4f94-8d42-36cdc2da6324
+
 
 
 ---

@@ -184,6 +184,8 @@ The app will be available at `http://localhost:8000`.
 
 The project uses GitHub Actions for automated build and deployment to AWS EC2.
 
+<img width="1340" height="595" alt="image" src="https://github.com/user-attachments/assets/41dd998f-65ca-45a0-a77e-4f96f63a2093" />
+
 **Continuous Integration** (runs on GitHub-hosted runner):
 1. Checks out the code
 2. Authenticates with AWS
@@ -196,8 +198,6 @@ The project uses GitHub Actions for automated build and deployment to AWS EC2.
 2. Stops and removes any existing containers
 3. Runs the new container, injecting all secrets as environment variables
 <img width="1319" height="559" alt="image" src="https://github.com/user-attachments/assets/c3caa9dc-41df-47ce-a6b4-bb970292e1fe" />
-
-<img width="1362" height="463" alt="image" src="https://github.com/user-attachments/assets/9a31e00a-d413-4eb0-9c0b-2dc5087dbc92" />
 
 ### Required GitHub Secrets
 

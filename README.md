@@ -195,6 +195,7 @@ The project uses GitHub Actions for automated build and deployment to AWS EC2.
 1. Pulls the latest image from ECR
 2. Stops and removes any existing containers
 3. Runs the new container, injecting all secrets as environment variables
+<img width="1319" height="559" alt="image" src="https://github.com/user-attachments/assets/c3caa9dc-41df-47ce-a6b4-bb970292e1fe" />
 
 <img width="1362" height="463" alt="image" src="https://github.com/user-attachments/assets/9a31e00a-d413-4eb0-9c0b-2dc5087dbc92" />
 

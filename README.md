@@ -219,7 +219,7 @@ The application is live and running on an AWS EC2 instance. Below are screenshot
 
 > The instance is active with a green ● running status, confirming the server is live and healthy.
 
-![EC2 Instance Running](assets/ec2-running-status.png)
+<img width="1114" height="241" alt="instance-running" src="https://github.com/user-attachments/assets/554bff20-d64c-4732-ac7d-8a343e7dc651" />
 
 ---
 
@@ -227,7 +227,7 @@ The application is live and running on an AWS EC2 instance. Below are screenshot
 
 > The public IPv4 address assigned to the instance — this is the URL at which the chatbot is accessible.
 
-![EC2 Public IP](assets/ec2-public-ip.png)
+<img width="1074" height="473" alt="instance-ip-address" src="https://github.com/user-attachments/assets/f9af36a8-1dc9-4b51-af94-861a79d2c487" />
 
 ---
 
@@ -239,7 +239,7 @@ The application is live and running on an AWS EC2 instance. Below are screenshot
 docker ps
 ```
 
-![Docker PS Output](assets/ec2-docker-ps.png)
+<img width="1366" height="530" alt="docker-ps" src="https://github.com/user-attachments/assets/a79bc20a-437c-47b9-99a5-721c98653765" />
 
 ---
 
@@ -251,7 +251,8 @@ docker ps
 sudo ./svc.sh start
 ```
 
-![EC2 Runner Service Start](assets/ec2-svc-start.png)
+<img width="1350" height="537" alt="svc-status-1" src="https://github.com/user-attachments/assets/086a0dfa-2ff0-41cf-86ce-3243b6cb7c07" />
+
 
 ## 🔬 Research & Experimentation
 

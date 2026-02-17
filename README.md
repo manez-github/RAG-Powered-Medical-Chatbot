@@ -193,6 +193,8 @@ The project uses GitHub Actions for automated build and deployment to AWS EC2.
 2. Stops and removes any existing containers
 3. Runs the new container, injecting all secrets as environment variables
 
+<img width="1362" height="463" alt="image" src="https://github.com/user-attachments/assets/9a31e00a-d413-4eb0-9c0b-2dc5087dbc92" />
+
 ### Required GitHub Secrets
 
 | Secret | Description |

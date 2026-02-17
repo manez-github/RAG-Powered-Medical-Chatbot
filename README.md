@@ -54,8 +54,10 @@ User Question
 
 The chatbot **never hallucinates facts it doesn't have** — if the retrieved context doesn't contain the answer, it says so.
 
+Detailed Diagram 1:
 <img width="1024" height="881" alt="how-it-works-1" src="https://github.com/user-attachments/assets/6bd68cb0-431d-41c7-a6a9-5acb42e346ac" />
 
+Detailed Diagram 2:
 <img width="781" height="311" alt="how-it-works-2" src="https://github.com/user-attachments/assets/bf64c843-431d-40a9-b223-ca58af7a9184" />
 
 ---
@@ -187,6 +189,7 @@ The project uses GitHub Actions for automated build and deployment to AWS EC2.
 2. Authenticates with AWS
 3. Builds the Docker image
 4. Pushes it to Amazon ECR
+<img width="1335" height="575" alt="image" src="https://github.com/user-attachments/assets/1b809cf9-250f-48af-8671-0f978b32146f" />
 
 **Continuous Deployment** (runs on self-hosted EC2 runner):
 1. Pulls the latest image from ECR

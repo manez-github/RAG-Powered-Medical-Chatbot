@@ -211,6 +211,47 @@ The project uses GitHub Actions for automated build and deployment to AWS EC2.
 | `GROQ_API_KEY` | Groq API key |
 
 ---
+# ☁️ AWS EC2 Deployment Proof
+
+The application is live and running on an AWS EC2 instance. Below are screenshots taken directly from the AWS Console and the EC2 terminal confirming the production deployment.
+
+**1. EC2 Instance — Running State**
+
+> The instance is active with a green ● running status, confirming the server is live and healthy.
+
+![EC2 Instance Running](assets/ec2-running-status.png)
+
+---
+
+**2. EC2 Instance — Public IP Address**
+
+> The public IPv4 address assigned to the instance — this is the URL at which the chatbot is accessible.
+
+![EC2 Public IP](assets/ec2-public-ip.png)
+
+---
+
+**3. EC2 Terminal — Docker Container Running**
+
+> `docker ps` confirms the container is up, shows the image pulled from ECR, the port mapping (`0.0.0.0:80→8080`), and the container uptime — proof that the Flask app is actively serving traffic.
+
+```bash
+docker ps
+```
+
+![Docker PS Output](assets/ec2-docker-ps.png)
+
+---
+
+**4. EC2 Terminal — GitHub Actions Runner Service**
+
+> The self-hosted GitHub Actions runner service started on the EC2 instance. This runner listens for CI/CD triggers and executes the CD job directly on the server.
+
+```bash
+sudo ./svc.sh start
+```
+
+![EC2 Runner Service Start](assets/ec2-svc-start.png)
 
 ## 🔬 Research & Experimentation
 
@@ -265,6 +306,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ---
 
-## 📄 License
-
-This project is open-source. See the repository for license details.

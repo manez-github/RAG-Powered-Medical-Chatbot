@@ -1,15 +1,22 @@
-from flask import Flask, render_template, request
+from dotenv import load_dotenv
+load_dotenv()
+
+from flask import Flask, render_template, request, session
 from langchain_groq import ChatGroq
 from langchain_pinecone import PineconeVectorStore
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_redis import RedisChatMessageHistory
+from langchain_core.runnables.history import RunnableWithMessageHistory
 from src.prompt import *
 from src.helper import *
-from dotenv import load_dotenv
-load_dotenv()
+import uuid
+import os
 
 app = Flask(__name__)
+
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
 embedding = download_embeddings()
 
@@ -43,8 +50,42 @@ def chat():
     msg = request.form["msg"]
     input = msg
     print(input)
-    response = rag_chain.invoke({"input": msg})
+    
+    redis_url = os.getenv("REDIS_URL")
+    
+    if "chat_session_id" not in session:
+        session["chat_session_id"] = str(uuid.uuid4())[:12]
+    session_id = session["chat_session_id"]
+    
+    # Gives session history for the respective user(session_id)
+    def get_session_history(session_id: str):
+        return RedisChatMessageHistory(
+            session_id=session_id,
+            redis_url=redis_url,
+            ttl=3600 * 12
+        )
+    
+    rag_chain_with_memory = RunnableWithMessageHistory(
+        rag_chain,
+        get_session_history,          
+        input_messages_key="input",
+        output_messages_key="answer",
+        history_messages_key="chat_history"
+    )
+    
+    response = rag_chain_with_memory.invoke(
+        {"input": msg}, 
+        config={"configurable": {"session_id": session_id}}
+        )
     print("Response: ", response['answer'])
+    
+    print("\n=== Current Chat History ===")
+    redis_history = get_session_history(session_id)
+    for message in redis_history.messages:
+        role = "User" if message.type == "human" else "Bot"
+        print(f"{role}: {message.content}")
+    print("===========================\n")
+
     return str(response['answer'])
  
 if __name__ == "__main__":

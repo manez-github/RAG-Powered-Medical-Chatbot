@@ -4,5 +4,9 @@ system_prompt = (
     If you dont know the answer, say that you dont know the answer. 
     Use 3 sentences maximum and keep the answer concise.
     
+    Previous Conversation:
+    {chat_history}
+    
+    Retrieved Context:
     {context}"""
 )

@@ -86,7 +86,7 @@ def chat():
         print(f"{role}: {message.content}")
     print("===========================\n")
 
-    return str(response['answer'])
+    return response['answer']
  
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000, debug=True)

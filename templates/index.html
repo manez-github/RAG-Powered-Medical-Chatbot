@@ -62,7 +62,16 @@
                     const str_time = hour + ":" + minute.toString().padStart(2, '0');
                     var rawText = $("#text").val();
 
-                    var userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_container_user">' + rawText + '<span class="msg_time_user">' + str_time + '</span></div><div><img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" class="rounded-circle msg_img"></div></div>'
+                    var userHtml = `
+                        <div class="d-flex justify-content-end mb-4">
+                            <div class="msg_container_user">
+                                ${rawText}
+                                <span class="msg_time_user">${str_time}</span>
+                            </div>
+                            <div>
+                                <img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" class="rounded-circle msg_img">
+                            </div>
+                        </div>`
 
                     $("#text").val('');
                     $("#messageFormeight").append(userHtml);
@@ -74,8 +83,16 @@
                         url: "/get",
                     }).done(function(data){
 
-                        var botHtml = '<div class="d-flex justify-content-start mb-4"><div><img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="rounded-circle msg_img"></div><div class="msg_container_bot">' + data + '<span class="msg_time_bot">' + str_time + '</span></div></div>'
-
+                        var botHtml = `
+                            <div class="d-flex justify-content-start mb-4">
+                                <div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="rounded-circle msg_img">
+                                </div>
+                                <div class="msg_container_bot">
+                                    ${data}
+                                    <span class="msg_time_bot">${str_time}</span>
+                                </div>
+                            </div>`
                         $("#messageFormeight").append(botHtml);
                         scrollToBottom();
                     });

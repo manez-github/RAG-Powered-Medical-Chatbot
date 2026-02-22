@@ -62,7 +62,7 @@ def chat():
         return RedisChatMessageHistory(
             session_id=session_id,
             redis_url=redis_url,
-            ttl=3600 * 12
+            ttl=3600 * 1
         )
     
     rag_chain_with_memory = RunnableWithMessageHistory(
